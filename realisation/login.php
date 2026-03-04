@@ -1,9 +1,12 @@
-<?php 
+
+
+<?php
 
     session_start();
 
 
     $users = [
+
         ["name" => "Oussama",
          "password" => "admin123",
          "role" => "administrateur",
@@ -19,87 +22,75 @@
          "role" => "apprenant",
          "active" => false
          ],
-        ["name" => "mohamed",
+        ["name" => "Mohamed",
          "password" => "mohamed123",
          "role" => "apprenant",
          "active" => true
-         ],
-
-         
+         ]  
     ];
+
 
 
     $message = "";
 
+
+
     if($_SERVER["REQUEST_METHOD"] === "POST") {
-        $login = $_POST["user_name"] ?? "";
+        $name = $_POST["name"] ?? "";
         $pass = $_POST["password"] ?? "";
-        $user_found = false;
 
 
-        foreach ($users as $user) {
+    foreach($users as $user) {
+        if($user["name"] === $name) {
 
-            if($user["name"] === $login){
-                $user_found = true;
 
-                if($user["password"] === $pass){
-                    if ($user["active"]) {
-
-                        $_SESSION["user"] = $user;
-
-                        header("Location: profil.php");
-                        exit();
-                    }else {
-                        $message = "Compte désactivé";
-                    }
-
-                } else {
-                    $message = "Mot de passe incorrect.";
-                }
-
-                break;
-            }
+        if($user["password"] !== $pass) {
+            $message = "Password incorrect";
+            break;
         }
-        if(!$user_found) {
-            $message = "Identifiants incorrects";
-    }
-    }
+
+        if(!$user["active"]) {
+            $message = "Comte désactivé";
+            break;
+        }
+
+        $_SESSION["user"] = $user;
+        header("Location: dashboard.php");
+        exit();
 
 
+      }
+
+    }
+    
+    if(empty($_SESSION["user"]) && $message == "") {
+        $message = "Identifiants incorrects";
+    }
+}
 ?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Connexion</title>
+    <title>connexion</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-
     <div class="container">
         <h2>Authentification</h2>
-
-        <?php if($message) echo "<p class='error-msg'>$message</p>" ?>
-
-        <form action="login.php" method="POST">
-
-            <label for="">Nom dutilisateur :</label>
-            <input type="text" name="user_name" required>
-
-            <label for="">Mot de passe :</label>
+        <p><?php if($message) echo $message; ?> </p>
+        <form action="login.php" method="post">
+            <label>Name :</label>
+            <br>
+            <input type="text" name="name" required>
+            <br><br>
+            <label>password :</label>
+            <br>
             <input type="password" name="password" required>
-
-
-            <button type="submit">Se connecter</button>
-
-            
-
+            <br><br>
+            <button type="submit" class="logout-btn">Log in</button>
         </form>
-    </div>
-    
+    </div>   
 </body>
 </html>
