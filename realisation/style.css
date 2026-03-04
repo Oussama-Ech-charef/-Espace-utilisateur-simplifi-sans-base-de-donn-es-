@@ -1,9 +1,9 @@
-/* Modern Style for Advanced Authentication */
+
 :root {
-    --primary: #2563eb;       /* Bleu (Administrateur/Formateur) */
-    --success: #22c55e;       /* Vert (Compte Actif) */
-    --danger: #ef4444;        /* Rouge (Se déconnecter/Erreur) */
-    --warning: #f59e0b;       /* Orange (Compte Désactivé) */
+    --primary: #2563eb;       
+    --success: #22c55e;       
+    --danger: #ef4444;        
+    --warning: #f59e0b;       
     --bg-body: #f9fafb;
     --card-bg: #ffffff;
     --text-dark: #111827;
@@ -37,7 +37,6 @@ h2 {
     font-weight: 800;
 }
 
-/* رسائل الخطأ والتنبيهات على حساب الحالة */
 .error-msg {
     padding: 0.8rem;
     border-radius: 0.6rem;
@@ -48,13 +47,13 @@ h2 {
     align-items: center;
     justify-content: center;
     gap: 8px;
-    /* الافتراضي أحمر (للأخطاء) */
+    
     background-color: #fef2f2;
     color: var(--danger);
     border: 1px solid #fee2e2;
 }
 
-/* تحسين شكل الفورم */
+
 label {
     display: block;
     text-align: left;
@@ -82,7 +81,7 @@ input:focus {
     box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.15);
 }
 
-/* الأزرار */
+
 button {
     width: 100%;
     padding: 0.9rem;
@@ -104,7 +103,7 @@ button[name="login_btn"]:hover {
     background-color: #1d4ed8;
 }
 
-/* زر الخروج الأحمر (Se déconnecter) */
+
 .logout-btn {
     background-color: var(--danger);
     color: white;
@@ -114,7 +113,7 @@ button[name="login_btn"]:hover {
     background-color: #dc2626;
 }
 
-/* تنسيق دور المستخدم (Role) في صفحة البروفايل */
+
 .role-badge {
     display: inline-block;
     padding: 4px 12px;
